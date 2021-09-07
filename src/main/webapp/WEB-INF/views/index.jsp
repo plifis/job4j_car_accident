@@ -18,12 +18,20 @@
     <table class="table" id="accidents">
         <thead class="thead-dark">
         <tr>
-            <th>Описание нарушения</th>
+            <th>Идентифкатор нарушения</th>
+            <th>Имя</th>
+            <th>Описание</th>
+            <th>Адрес</th>
         </tr>
         </thead>
         <tbody>
         <c:forEach var="accident" items="${accidents}">
-            <tr><td><label class="form-check-label">${accident}</label></td></tr>
+            <tr>
+                <td><label class="form-check-label" id="id"><c:out value="${accident.id}"/></label></td>
+                <td><label class="form-check-label" id="name"><c:out value="${accident.name}"/></label></td>
+                <td><label class="form-check-label" id="description"><c:out value="${accident.text}"/></label></td>
+                <td><label class="form-check-label" id="address"><c:out value="${accident.address}"/></label></td>
+            </tr>
         </c:forEach>
         </tbody>
     </table>
