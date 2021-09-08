@@ -22,6 +22,7 @@
             <th>Имя</th>
             <th>Описание</th>
             <th>Адрес</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -31,6 +32,7 @@
                 <td><label class="form-check-label" id="name"><c:out value="${accident.name}"/></label></td>
                 <td><label class="form-check-label" id="description"><c:out value="${accident.text}"/></label></td>
                 <td><label class="form-check-label" id="address"><c:out value="${accident.address}"/></label></td>
+                <td><a href="<c:url value='/update?id=${accident.id}'/>">Обновить</a></td>
             </tr>
         </c:forEach>
         <a href="<c:url value='/create'/>">Добавить инцидент</a>

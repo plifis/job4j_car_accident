@@ -15,16 +15,16 @@ public class AccidentService {
         this.mem = mem;
     }
 
-    public void createAccident(Accident accident) {
-        this.mem.addAccident(accident);
-    }
-
-    public void editAccident(int i, Accident accident) {
-        this.mem.updateAccident(i, accident);
+    public void save(Accident accident) {
+        this.mem.saveOrUpdate(accident);
     }
 
     public Collection<Accident> getAllAccident() {
         return this.mem.getAccidents();
+    }
+
+    public Accident findById(int id) {
+        return this.mem.getId(id);
     }
 
 

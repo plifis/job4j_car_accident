@@ -28,14 +28,17 @@ public class AccidentMem {
         this.init();
     }
 
-    public void addAccident(Accident accident) {
-        this.accidents.put(count.incrementAndGet(),accident);
+    public void saveOrUpdate(Accident accident) {
+        if (accident.getId() == 0) {
+            this.accidents.put(count.incrementAndGet(), accident);
+        } else {
+            this.accidents.replace(accident.getId(), accident);
+        }
     }
 
-    public void updateAccident(int i, Accident accident) {
-        this.accidents.replace(i, accident);
+    public Accident getId(int id) {
+        return this.accidents.get(id);
     }
-
 
     public Collection<Accident> getAccidents() {
         return accidents.values();
