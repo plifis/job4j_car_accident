@@ -33,6 +33,8 @@
                 <td><label class="form-check-label" id="address"><c:out value="${accident.address}"/></label></td>
             </tr>
         </c:forEach>
+        <a href="<c:url value='/create'/>">Добавить инцидент</a>
+
         </tbody>
     </table>
 </div>
