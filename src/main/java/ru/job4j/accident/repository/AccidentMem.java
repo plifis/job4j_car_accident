@@ -5,12 +5,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import ru.job4j.accident.model.Accident;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 @Repository
 public class AccidentMem {
-    private static final AccidentMem INST = new AccidentMem();
     private final Map<Integer, Accident> accidents = new HashMap<>();
 
 
@@ -21,16 +21,13 @@ public class AccidentMem {
         return accidents;
     }
 
-    private AccidentMem() {
+    public AccidentMem() {
         this.init();
     }
 
-    public static AccidentMem instOf() {
-        return INST;
-    }
 
-    public Map<Integer, Accident> getAccidents() {
-        return accidents;
+    public Collection<Accident> getAccidents() {
+        return accidents.values();
     }
 
 }
