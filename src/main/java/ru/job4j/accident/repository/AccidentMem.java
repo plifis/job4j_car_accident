@@ -30,7 +30,9 @@ public class AccidentMem {
 
     public void saveOrUpdate(Accident accident) {
         if (accident.getId() == 0) {
-            this.accidents.put(count.incrementAndGet(), accident);
+            int id = count.incrementAndGet();
+            accident.setId(id);
+            this.accidents.put(id, accident);
         } else {
             this.accidents.replace(accident.getId(), accident);
         }

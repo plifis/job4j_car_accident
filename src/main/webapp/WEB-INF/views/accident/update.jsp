@@ -20,6 +20,9 @@
                 <td><input type='text' name='text' value="<c:out value="${accident.text}"/>"></td>
                 <td>Адрес:</td>
                 <td><input type='text' name='address' value="<c:out value="${accident.address}"/>"></td>
+                <td>Тип:</td>
+                <td> <select name="type.id"><option value="${accident.type.id}">${accident.type.id}</option>
+                </select></td>
             </tr>
                 <td><input name="submit" type="submit" value="Обновить" /></td>
             </tr>
