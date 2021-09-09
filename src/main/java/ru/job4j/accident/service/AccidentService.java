@@ -6,6 +6,9 @@ import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.repository.AccidentMem;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Stream;
 
 @Service
 public class AccidentService {
@@ -15,8 +18,8 @@ public class AccidentService {
         this.mem = mem;
     }
 
-    public void save(Accident accident) {
-        this.mem.saveOrUpdate(accident);
+    public void save(Accident accident, String[] ids) {
+        this.mem.saveOrUpdate(accident, ids);
     }
 
     public Collection<Accident> getAllAccident() {
