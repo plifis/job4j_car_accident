@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.handler.UserRoleAuthorizationInterceptor;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
@@ -19,18 +20,12 @@ import java.util.List;
 @Controller
 public class AccidentControl {
     private AccidentService service;
-    private List<AccidentType> types = new ArrayList<>();
-    List<Rule> rules = new ArrayList<>();
+
 
 
     public AccidentControl(AccidentService service) {
         this.service = service;
-        types.add(AccidentType.of(1, "Две машины"));
-        types.add(AccidentType.of(2, "Машина и человек"));
-        types.add(AccidentType.of(3, "Машина и велосипед"));
-        rules.add(Rule.of(1, "Статья. 1"));
-        rules.add(Rule.of(2, "Статья. 2"));
-        rules.add(Rule.of(3, "Статья. 3"));
+
     }
 
 
@@ -44,14 +39,14 @@ public class AccidentControl {
     @GetMapping("/update")
     public String update(@RequestParam("id") int id, Model model) {
         model.addAttribute("accident", service.findById(id));
-        model.addAttribute("type", types);
+        model.addAttribute("type", service.getAllTypes());
         return "accident/update";
     }
 
     @GetMapping("/create")
     public String create(Model model) {
-        model.addAttribute("types", types);
-        model.addAttribute("rules", rules);
+        model.addAttribute("types", service.getAllTypes());
+        model.addAttribute("rules", service.getAllRules());
         return "accident/create";
     }
 }

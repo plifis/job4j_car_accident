@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import ru.job4j.accident.control.AccidentControl;
 import ru.job4j.accident.model.Accident;
+import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
 
 import java.util.*;
@@ -16,6 +17,7 @@ public class AccidentMem {
     private static final AtomicInteger count = new AtomicInteger(0);
     private final Map<Integer, Accident> accidents = new HashMap<>();
     private final Map<Integer, Rule> rules = new HashMap();
+    private final Map<Integer, AccidentType> types = new HashMap<>();
 
 
     private Map<Integer, Accident> init() {
@@ -25,6 +27,9 @@ public class AccidentMem {
         this.rules.put(1, Rule.of(1, "Статья. 1"));
         this.rules.put(2, Rule.of(2, "Статья. 2"));
         this.rules.put(3, Rule.of(3, "Статья. 3"));
+        types.put(1, AccidentType.of(1, "Две машины"));
+        types.put(2, AccidentType.of(2, "Машина и человек"));
+        types.put(3, AccidentType.of(3, "Машина и велосипед"));
         return accidents;
     }
 
@@ -62,7 +67,12 @@ public class AccidentMem {
         return count;
     }
 
-    public Map<Integer, Rule> getRules() {
-        return rules;
+    public Collection<Rule> getRules() {
+        return rules.values();
     }
+
+    public Collection<AccidentType> getTypes() {
+        return types.values();
+    }
+
 }
