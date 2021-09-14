@@ -23,9 +23,8 @@ public class AccidentJdbcTemplate {
                     accident.getName());
             return accident;
         } else {
-            String query = "update accident set (name, text, address) = (" + accident.getName() +
-                    accident.getText() + accident.getAddress() + ") where =" + accident.getId();
-            jdbc.update(query);
+            jdbc.update("update accident set (name, text, address) = (?, ?, ?, ?) where = (?)", accident.getName(),
+                    accident.getText(), accident.getAddress(), accident.getId());
             return accident;
         }
     }
@@ -39,12 +38,6 @@ public class AccidentJdbcTemplate {
                     return accident;
                 });
     }
-
-    public Accident findById(int id) {
-        String query = "select name from accident where id = " + id;
-        return jdbc.queryForObject(query, Accident.class);
-    }
-
 
     public List<Rule> getRules() {
         return jdbc.query("select id, name from rule",
@@ -65,4 +58,9 @@ public class AccidentJdbcTemplate {
                     return  type;
                 });
     }
+
+    public Accident findById(int id) {
+        return jdbc.queryForObject("select name from accident where id = ?", Accident.class, id);
+    }
+
 }
