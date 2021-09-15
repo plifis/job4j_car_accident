@@ -14,25 +14,25 @@ import java.util.List;
 
 @Controller
 public class IndexControl {
-    private final AccidentRepository accidents;
+    private final AccidentHibernate accidents;
 
-    public IndexControl(AccidentRepository accidents) {
+    public IndexControl(AccidentHibernate accidents) {
         this.accidents = accidents;
     }
 
-//    @GetMapping("/")
-//    public String index(Model model) {
-//        model.addAttribute("accidents", accidents.getAllAccidents());
-//        return "index";
-//    }
-
-
     @GetMapping("/")
     public String index(Model model) {
-        List<Accident> res = new ArrayList<>();
-        accidents.findAll().forEach(res::add);
-        model.addAttribute("accidents", res);
+        model.addAttribute("accidents", accidents.getAllAccidents());
         return "index";
     }
+
+
+//    @GetMapping("/")
+//    public String index(Model model) {
+//        List<Accident> res = new ArrayList<>();
+//        accidents.findAll().forEach(res::add);
+//        model.addAttribute("accidents", res);
+//        return "index";
+//    }
 
 }

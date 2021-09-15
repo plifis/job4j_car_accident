@@ -14,7 +14,15 @@ public class Accident {
     private String name;
     private String text;
     private String address;
+    @ManyToOne (cascade = {CascadeType.MERGE, CascadeType.DETACH, CascadeType.PERSIST})
+    @JoinColumn(name = "types")
     private AccidentType type;
+    @ManyToMany (cascade = {CascadeType.MERGE, CascadeType.DETACH, CascadeType.PERSIST})
+    @JoinTable(
+            name="accidents_rules",
+            joinColumns = {@JoinColumn(name = "accidents_id")},
+            inverseJoinColumns = {@JoinColumn(name = "rules_id")}
+    )
     private Set<Rule> rules = new HashSet<>();
 
     public Accident(int id, String name, String text, String address) {
@@ -82,6 +90,11 @@ public class Accident {
 
     public void setRules(Set<Rule> rules) {
         this.rules = rules;
+    }
+
+
+    public void addRule(Rule rule) {
+        this.rules.add(rule);
     }
 
     @Override

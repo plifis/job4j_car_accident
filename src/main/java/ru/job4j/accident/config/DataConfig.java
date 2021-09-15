@@ -15,11 +15,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
-
-@Configuration
-@PropertySource("classpath:app.properties")
-@EnableJpaRepositories("ru.job4j.accident.repository")
-@EnableTransactionManagement
+//
+//@Configuration
+//@PropertySource("classpath:app.properties")
+//@EnableJpaRepositories("ru.job4j.accident.repository")
+//@EnableTransactionManagement
 public class DataConfig {
     @Bean
     public DataSource ds(@Value("${jdbc.driver}") String driver,

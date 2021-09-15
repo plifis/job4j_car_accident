@@ -1,8 +1,6 @@
 package ru.job4j.accident.repository;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jndi.JndiObjectFactoryBean;
-import org.springframework.stereotype.Repository;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
@@ -10,14 +8,15 @@ import ru.job4j.accident.model.Rule;
 import java.util.List;
 
 //@Repository
-public class AccidentJdbcTemplate {
+public class AccidentJdbcTemplate implements Store {
     private final JdbcTemplate jdbc;
 
     public AccidentJdbcTemplate(JdbcTemplate jdbc) {
         this.jdbc = jdbc;
     }
 
-    public Accident save(Accident accident) {
+    @Override
+    public Accident saveOrUpdate(Accident accident, String[] ids) {
         if (accident.getId() == 0) {
             jdbc.update("insert into accident (name) values (?)",
                     accident.getName());
@@ -29,8 +28,9 @@ public class AccidentJdbcTemplate {
         }
     }
 
+    @Override
     public List<Accident> getAllAccidents() {
-        return jdbc.query("select id, name, text, address from accident",
+        return jdbc.query("select disctinct id, name, text, address from accident a join fetch a.type join fetch a.rules",
                 (rs, row) -> {
                     Accident accident = new Accident();
                     accident.setId(rs.getInt("id"));
@@ -39,7 +39,8 @@ public class AccidentJdbcTemplate {
                 });
     }
 
-    public List<Rule> getRules() {
+    @Override
+    public List<Rule> getAllRules() {
         return jdbc.query("select id, name from rule",
                 (rs, row) -> {
                     Rule rule = new Rule();
@@ -49,7 +50,8 @@ public class AccidentJdbcTemplate {
                 });
     }
 
-    public  List<AccidentType> getTypes() {
+    @Override
+    public  List<AccidentType> getAllTypes() {
         return jdbc.query("select id, name from type",
                 (rs, row) -> {
                     AccidentType type = new AccidentType();
@@ -59,8 +61,9 @@ public class AccidentJdbcTemplate {
                 });
     }
 
-    public Accident findById(int id) {
-        return jdbc.queryForObject("select name from accident where id = ?", Accident.class, id);
+    @Override
+    public <T> T findById(Class<T> cl, int id) {
+        return jdbc.queryForObject("select name from accident a join fetch where id = ?", cl, id);
     }
 
 }

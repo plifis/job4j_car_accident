@@ -3,8 +3,8 @@ CREATE TABLE accidents (
     name varchar(2000),
     text varchar (2000),
     address varchar(1000),
-    type_id int references types(id),
-    rule_id int references rules(id)
+--     type_id int references types(id),
+--     rule_id int references rules(id)
 );
 
 create table types (

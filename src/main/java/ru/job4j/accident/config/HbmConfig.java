@@ -15,9 +15,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-//@Configuration
-//@PropertySource("classpath:app.properties")
-//@EnableTransactionManagement
+@Configuration
+@PropertySource("classpath:app.properties")
+@EnableTransactionManagement
 public class HbmConfig {
 
         @Bean
@@ -40,6 +40,10 @@ public class HbmConfig {
             sessionFactory.setPackagesToScan("ru.job4j.accident.model");
             Properties cfg = new Properties();
             cfg.setProperty("hibernate.dialect", dialect);
+            cfg.setProperty("hibernate.hbm2ddl.auto", "update");
+            cfg.setProperty("hibernate.show_sql", "true");
+            cfg.setProperty("hibernate.format_sql", "true");
+            cfg.setProperty("hibernate.highlight_sql", "true");
             sessionFactory.setHibernateProperties(cfg);
             return sessionFactory;
         }
