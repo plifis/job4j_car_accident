@@ -30,7 +30,7 @@ public class AccidentJdbcTemplate implements Store {
 
     @Override
     public List<Accident> getAllAccidents() {
-        return jdbc.query("select disctinct id, name, text, address from accident a join fetch a.type join fetch a.rules",
+        return jdbc.query("select disctinct a from accident a left join fetch a.type left join fetch a.rules",
                 (rs, row) -> {
                     Accident accident = new Accident();
                     accident.setId(rs.getInt("id"));
