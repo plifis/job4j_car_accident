@@ -21,8 +21,7 @@ public class Accident {
     @JoinTable(
             name="accidents_rules",
             joinColumns = {@JoinColumn(name = "accidents_id")},
-            inverseJoinColumns = {@JoinColumn(name = "rules_id")}
-    )
+            inverseJoinColumns = {@JoinColumn(name = "rules_id")})
     private Set<Rule> rules = new HashSet<>();
 
     public Accident(int id, String name, String text, String address) {

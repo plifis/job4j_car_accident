@@ -23,6 +23,7 @@ public class AccidentHibernate implements Store {
         for (String id : ids) {
             accident.addRule(this.findById(Rule.class, Integer.parseInt(id)));
         }
+        accident.setType(this.findById(AccidentType.class, accident.getType().getId()));
         try (Session session = sf.openSession()) {
             session.save(accident);
             return accident;

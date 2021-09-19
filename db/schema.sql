@@ -1,18 +1,16 @@
-CREATE TABLE accidents (
+CREATE TABLE accident (
     id serial primary key,
     name varchar(2000),
     text varchar (2000),
-    address varchar(1000),
---     type_id int references types(id),
---     rule_id int references rules(id)
+    address varchar(1000)
 );
 
-create table types (
+create table type (
     id serial primary key,
     name varchar (500)
 );
 
-create table rules (
+create table rule (
     id serial primary key,
     name varchar (500)
 );
