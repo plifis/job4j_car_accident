@@ -25,7 +25,7 @@ public class IndexControl {
         return "index";
     }
 
-
+//
 //    @GetMapping("/")
 //    public String index(Model model) {
 //        List<Accident> res = new ArrayList<>();

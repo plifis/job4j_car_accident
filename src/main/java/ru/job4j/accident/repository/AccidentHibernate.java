@@ -32,7 +32,7 @@ public class AccidentHibernate implements Store {
 
     public List<Accident> getAllAccidents() {
         try (Session session = sf.openSession()) {
-            return session.createQuery("from Accident", Accident.class).list();
+            return session.createQuery("select distinct a from Accident a join fetch a.type join fetch a.rules", Accident.class).list();
         }
     }
 
