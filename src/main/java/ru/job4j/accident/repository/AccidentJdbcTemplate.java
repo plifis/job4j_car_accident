@@ -61,9 +61,12 @@ public class AccidentJdbcTemplate implements Store {
                 });
     }
 
-    @Override
     public <T> T findById(Class<T> cl, int id) {
         return jdbc.queryForObject("select a from accident a left join fetch where id = ?", cl, id);
     }
 
+
+    public Accident findAccidentById(int id) {
+        return jdbc.queryForObject("select a from Accident a left join fetch where id = ?", Accident.class, id);
+    }
 }

@@ -10,7 +10,7 @@ import ru.job4j.accident.model.Rule;
 
 import java.util.List;
 
-@Repository
+//@Repository
 public class AccidentHibernate implements Store {
     private final SessionFactory sf;
 
@@ -32,7 +32,11 @@ public class AccidentHibernate implements Store {
 
     public List<Accident> getAllAccidents() {
         try (Session session = sf.openSession()) {
-            return session.createQuery("select distinct a from Accident a join fetch a.type join fetch a.rules", Accident.class).list();
+            List<Accident> list = session.createQuery( "select distinct a from Accident a "
+                            + "join fetch a.type "
+                            + "join fetch a.rules order by a.id",
+                    Accident.class).list();
+            return list;
         }
     }
 

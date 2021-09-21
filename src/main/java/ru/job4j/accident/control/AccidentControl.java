@@ -19,15 +19,11 @@ import java.util.List;
 
 @Controller
 public class AccidentControl {
-    private AccidentService service;
-
-
+    private final AccidentService service;
 
     public AccidentControl(AccidentService service) {
         this.service = service;
-
     }
-
 
     @PostMapping("/save")
     public String save(@ModelAttribute Accident accident, HttpServletRequest req) {
@@ -38,7 +34,7 @@ public class AccidentControl {
 
     @GetMapping("/update")
     public String update(@RequestParam("id") int id, Model model) {
-        model.addAttribute("accident", service.findById(id));
+        model.addAttribute("accident", service.findAccidentById(id));
         model.addAttribute("type", service.getAllTypes());
         return "accident/update";
     }

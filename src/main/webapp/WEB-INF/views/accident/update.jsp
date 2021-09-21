@@ -23,6 +23,12 @@
                 <td>Тип:</td>
                 <td> <select name="type.id"><option value="${accident.type.id}">${accident.type.id}</option>
                 </select></td>
+                <td>Статьи:</td>
+                <td><select name="rIds" multiple>
+                        <c:forEach var="rule" items="${accident.rules}" >
+                            <option value="${rule.id}">${rule.name}</option>
+                        </c:forEach>
+                    </select>
             </tr>
                 <td><input name="submit" type="submit" value="Обновить" /></td>
             </tr>
