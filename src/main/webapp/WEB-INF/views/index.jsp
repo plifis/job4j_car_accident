@@ -13,7 +13,9 @@
     <link href="../../styles/style.css">
 </head>
 <body>
-
+<div>
+    Login as : ${user.username}
+</div>
 <div class="container">
     <table class="table" id="accidents">
         <thead class="thead-dark">
