@@ -21,13 +21,6 @@ public class IndexControl {
         this.accidents = accidents;
     }
 
-//    @GetMapping("/")
-//    public String index(Model model) {
-//        model.addAttribute("accidents", accidents.getAllAccidents());
-//        return "index";
-//    }
-
-
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());

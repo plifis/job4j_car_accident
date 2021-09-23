@@ -12,7 +12,6 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
-//@Repository
 public class AccidentMem {
     private static final AtomicInteger count = new AtomicInteger(0);
     private final Map<Integer, Accident> accidents = new HashMap<>();

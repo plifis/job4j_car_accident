@@ -14,5 +14,4 @@ public interface Store {
     public List<AccidentType> getAllTypes();
     public List<Rule> getAllRules();
     public <T> T findById(Class<T> cl, int id);
-//    public Accident findAccidentById(int id);
 }

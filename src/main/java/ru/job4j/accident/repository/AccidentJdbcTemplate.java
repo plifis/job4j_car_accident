@@ -7,7 +7,6 @@ import ru.job4j.accident.model.Rule;
 
 import java.util.List;
 
-//@Repository
 public class AccidentJdbcTemplate implements Store {
     private final JdbcTemplate jdbc;
 
