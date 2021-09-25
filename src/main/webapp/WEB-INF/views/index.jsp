@@ -15,6 +15,7 @@
 <body>
 <div>
     Login as : ${user.username}
+    <a href="<c:url value='/logout'/>">Exit</a>
 </div>
 <div class="container">
     <table class="table" id="accidents">
