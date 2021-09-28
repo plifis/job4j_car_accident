@@ -32,13 +32,12 @@ public class RegControl {
             String errorMessage = "А user with this name is already registered.";
             model.addAttribute("errorMessage", errorMessage);
             return "reg";
-        } else {
+        }
             user.setEnabled(true);
             user.setPassword(encoder.encode(user.getPassword()));
             user.setAuthority(authorities.findByAuthority("ROLE_USER"));
             users.save(user);
             return "redirect:/login";
-        }
     }
 
     @GetMapping("/reg")
